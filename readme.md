@@ -1,3 +1,4 @@
+![Screenshot_from_2024-06-02_20-17-15-removebg-preview](https://github.com/ashutosh7i/VoiceVibeAI/assets/103135533/ccff903a-aae2-4c2a-ad50-2847e1d8a033)
 # "VoiceVibe.AI" 
 ### Your Thoughts, Your Emotions, Your Voice !!!
 
