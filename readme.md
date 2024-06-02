@@ -32,8 +32,8 @@ VoiceVibe.AI is a transformative platform empowering users to journal their thou
 - **classifiers**: Naive Bayes, Linear Regression, Random Rorrrest, SVM
 
 ## Installation Guide <a name="installation"></a>
-1. Clone the repository: `git clone https://github.com/your-repo.git`
-2. Navigate to the project directory: `cd VoiceVibe.AI`
+1. Clone the repository: `https://github.com/ashutosh7i/VoiceVibeAI.git`
+2. Navigate to the project directory: `cd VoiceVibeAI`
 3. Install dependencies:
    - Frontend: `cd frontend && npm install`
    - Backend: `cd backend && pip install -r requirements.txt`
