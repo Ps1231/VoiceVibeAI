@@ -432,7 +432,7 @@ export default function BasicDemo() {
     };
 
     axios
-      .post("https://farmiqapi.ashutosh7i.dev/store_data", data)
+      .post("https://voivevibeai.co/store_data", data)
       .then((res) => {
         console.log("Server response:", res.data);
       })
@@ -443,7 +443,7 @@ export default function BasicDemo() {
     // Make another API call after 2 seconds
     setTimeout(() => {
       axios
-        .post("https://farmiqapi.ashutosh7i.dev/predict_sentiment", {
+        .post("https://voivevibeai.co/predict_sentiment", {
           user: "Ashutosh",
           title: "some title",
         })

@@ -26,6 +26,8 @@ import {
   SearchIcon,
   Logo,
 } from "@/components/icons";
+import Image from "next/image";
+import logo from "@/public/logo.png";
 
 export const Navbar = () => {
   return (
@@ -33,8 +35,14 @@ export const Navbar = () => {
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
-            <Logo />
-            <p className="font-bold text-inherit">VoiceVibe AI</p>
+            {/* <Logo />
+            <p className="font-bold text-inherit">VoiceVibe AI</p> */}
+            <Image
+              src={logo}
+              width={150}
+              height={500}
+              alt="Picture of the author"
+            />
           </NextLink>
         </NavbarBrand>
       </NavbarContent>
@@ -93,8 +101,8 @@ export const Navbar = () => {
                   index === 2
                     ? "primary"
                     : index === siteConfig.navMenuItems.length - 1
-                      ? "danger"
-                      : "foreground"
+                    ? "danger"
+                    : "foreground"
                 }
                 href="#"
                 size="lg"
