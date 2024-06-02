@@ -31,6 +31,6 @@
     "app/dashboard/adsfasf.tsxsdfs",
     "app/layout.tsx",
     "app/diary/adsfasf.tsxsdfs"
-, "app/diary/addpage/page.jsx", "components/Emotion.jsx"  ],
+, "app/diary/addpage/page.jsx", "components/Emotion.jsx", "app/providers.jsx"  ],
   "exclude": ["node_modules"]
 }

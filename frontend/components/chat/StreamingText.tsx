@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 
 interface Props {
-  text: string
-  interval?: number
-  isTextStream?: boolean
-  chatWindowRef: any
+  text: string;
+  interval?: number;
+  isTextStream?: boolean;
+  chatWindowRef: any;
 }
 
 const StreamingText: React.FC<Props> = ({
@@ -13,33 +13,33 @@ const StreamingText: React.FC<Props> = ({
   isTextStream = false,
   chatWindowRef,
 }) => {
-  const [displayedText, setDisplayedText] = useState('')
+  const [displayedText, setDisplayedText] = useState("");
   useEffect(() => {
     if (chatWindowRef.current && isTextStream) {
-      chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight
+      chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
     }
-  }, [displayedText])
+  }, [displayedText, chatWindowRef, isTextStream]);
 
   useEffect(() => {
     if (isTextStream && text.length < 120) {
-      let i = 0
+      let i = 0;
 
       const timer = setInterval(() => {
         if (i < text.length - 1) {
-          setDisplayedText((prevText) => prevText + text[i])
-          i++
+          setDisplayedText((prevText) => prevText + text[i]);
+          i++;
         } else {
-          clearInterval(timer)
+          clearInterval(timer);
         }
-      }, interval)
+      }, interval);
 
-      return () => clearInterval(timer)
+      return () => clearInterval(timer);
     } else {
-      setDisplayedText(text)
+      setDisplayedText(text);
     }
-  }, [text, interval])
+  }, [text, interval, isTextStream]);
 
-  return <>{displayedText}</>
-}
+  return <>{displayedText}</>;
+};
 
-export default StreamingText
+export default StreamingText;
