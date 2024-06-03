@@ -15,7 +15,7 @@ def initialize_julep_client():
     return client
 
 
-def get_character_reply(character_name, user_msg):
+def get_character_reply(character_name, user_msg, current_context):
     client = initialize_julep_client()
 
     character_info = characters_info.get(character_name)
@@ -44,9 +44,7 @@ def get_character_reply(character_name, user_msg):
         tools=[]
     )
 
-    about_user = """Average nerdy techbro/girl who spends 8 hours a day in front of a laptop.
-    Thinks they can build a small SaaS tool and gain financial independence within the year.
-    """
+    about_user = current_context
     user = client.users.create(
         name="Me",
         about=about_user,
