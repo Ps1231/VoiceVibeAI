@@ -12,6 +12,11 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import LinearSVC
 from nltk.stem import PorterStemmer
 from nltk import word_tokenize
+from julep import Client
+from dotenv import load_dotenv
+import os
+import textwrap
+from character_info import characters_info
 
 nltk.download('punkt')
 
@@ -143,6 +148,56 @@ def predict_sentiment():
             if not text:
                 return jsonify({'message': 'Text field missing in document'}), 400
 
+            try:
+                message = text
+                predicted_emotion = predict_emotion(message, loaded_model)
+                return jsonify({'emotion': predicted_emotion[0]})
+            except Exception as e:
+                return jsonify({'error': str(e)})
+
+        except Exception as e:
+            print(f"Error processing request: {e}")
+            return jsonify({'message': 'Internal server error'}), 500
+
+    return jsonify({'message': 'Invalid request method'}), 405
+
+# route for chatting with the character also the chatbot knows about the story/context by user
+@app.route('/character_chat', methods=['POST'])
+def predict_sentiment():
+    if request.method == 'POST':
+        try:
+            # Parse username, title and Desired chat character from request body
+            data = request.get_json()
+            print(data)
+            user = data.get('user')
+            title = data.get('title')
+            character = data.get('character')
+
+            # parsing latest context about that given user and title from the database
+            # Check if required fields are present
+            if not user or not title:
+                return jsonify({'message': 'Missing required fields: username or title'}), 400
+
+            # Fetch text from MongoDB based on username and title (adjust query as needed)
+            query = {'user': user, 'title': title}
+            print(query)
+            document = collection.find_one(query)
+
+            if not document:
+                return jsonify({'message': 'Document not found'}), 404
+
+            text = document.get('text')
+        
+            # this is the context/story of the user
+            print(text)
+
+            if not text:
+                return jsonify({'message': 'Text field missing in document'}), 400
+
+            # now we have the context of the user and the character name
+            # we can use this to create a  chat with the character
+    
+            
             try:
                 message = text
                 predicted_emotion = predict_emotion(message, loaded_model)
