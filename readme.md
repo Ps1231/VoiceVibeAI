@@ -31,10 +31,10 @@ VoiceVibe.AI is a transformative platform empowering users to journal their thou
 - **Frontend**: Next.js, Tailwind CSS
 - **Backend**: Flask
 - **Database**: MongoDB
-- **Authentication**: JSON Web Tokens (JWT)
+<!--- **Authentication**: JSON Web Tokens (JWT)--->
 - **Voice Recognition**: Web Speech API
 - **Emotion Analysis**: Emotion Classification in Texts using Scikit-learn
-- **classifiers**: Naive Bayes, Linear Regression, Random Rorrrest, SVM
+- **Classifiers**: Naive Bayes, Linear Regression, Random Rorrrest, SVM
 
 ## Installation Guide <a name="installation"></a>
 1. Clone the repository: `https://github.com/ashutosh7i/VoiceVibeAI.git`
