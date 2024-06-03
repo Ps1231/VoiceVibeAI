@@ -143,9 +143,9 @@ export default function Chat({ title }: { title: string }) {
   );
 
   useEffect(() => {
-    const handlePongEvent = (data) => {
+    const handlePongEvent = (data: { data: any; }) => {
       console.log("received pong: ", data);
-      setChat((prevChat) => [
+      setChat((prevChat: any) => [
         ...prevChat,
         { sender: "server", message: data.data },
       ]);
@@ -165,7 +165,7 @@ export default function Chat({ title }: { title: string }) {
 
   const sendMessage = () => {
     socket.emit("pingEvent", { data: message });
-    setChat((prevChat) => [...prevChat, { sender: "client", message }]);
+    setChat((prevChat: any) => [...prevChat, { sender: "client", message }]);
     setMessage("");
   };
 
@@ -191,7 +191,7 @@ export default function Chat({ title }: { title: string }) {
               <ModalBody className="flex flex-col mx-auto pt-[40px] flex-grow">
                 <div className="flex flex-col h-full justify-between">
                   <div>
-                    {chat.map((msg, index) => (
+                    {chat.map((msg: { sender: string; message: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; }, index: React.Key | null | undefined) => (
                       <p key={index}>
                         {msg.sender === "client" ? "You: " : "Server: "}
                         {msg.message}

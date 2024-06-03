@@ -1,8 +1,8 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Next.js + NextUI",
-  description: "Make beautiful websites regardless of your design experience.",
+  name: "VoiceVibeAI ✨👩‍🦰",
+  description: "VoiceVibe is an AI audio diary app that uses voice-to-text transcription, keyword tagging, emotion analysis, and secure storage to help users easily record, track, and reflect on their thoughts and experiences.",
   navItems: [
     {
       label: "Home",
@@ -52,7 +52,7 @@ export const siteConfig = {
     },
   ],
   links: {
-    github: "https://github.com/nextui-org/nextui",
+    github: "https://github.com/ashutosh7i/VoiceVibeAI",
     twitter: "https://twitter.com/getnextui",
     docs: "https://nextui.org",
     discord: "https://discord.gg/9b6yyZKmH4",
