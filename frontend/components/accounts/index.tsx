@@ -50,11 +50,11 @@ export const Accounts = () => {
           <DotsIcon />
         </div>
         <div className="flex flex-row gap-3.5 flex-wrap">
-          {/* <AddUser /> */}
+          <AddUser />
 
-          <Button color="primary" startContent={<ExportIcon />}>
+          {/* <Button color="primary" startContent={<ExportIcon />}>
             <Link href="/diary/addpage">Add new page</Link>
-          </Button>
+          </Button> */}
         </div>
       </div>
       <div className="max-w-[95rem] mx-auto w-full">

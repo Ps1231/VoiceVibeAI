@@ -205,6 +205,9 @@ import "react-quill/dist/quill.snow.css";
 import ChatModal from "@/components/chatModal";
 import axios from "axios";
 import Emotion from "@/components/Emotion";
+import { useSearchParams } from "next/navigation";
+
+import { user } from "@nextui-org/react";
 
 // Custom Scrollable Text Area Component
 const ScrollableTextArea = ({ text }) => {
@@ -218,10 +221,19 @@ const ScrollableTextArea = ({ text }) => {
 };
 
 export default function BasicDemo() {
+  const searchParams = useSearchParams();
+  // extract the username and title from the query
+  const username = searchParams.get("username");
+  const title = searchParams.get("title");
+
+  console.log("Username:", username);
+  console.log("Title:", title);
+
   const [text, setText] = useState(() => {
-    const savedText = localStorage.getItem("savedText") || "";
+    const savedText = localStorage.getItem(username) || "";
     return savedText.split("\n");
   });
+
   const [recognizing, setRecognizing] = useState(false);
   const [infoMessage, setInfoMessage] = useState("Click and start speaking.");
   const [emotion, setEmotion] = useState(null);
@@ -229,15 +241,19 @@ export default function BasicDemo() {
   const recognition = useRef(null);
   const [isComponentMounted, setIsComponentMounted] = useState(false);
 
+  // console.log("Username:", username);
+  // console.log("Title:", title);
+
   function exportText() {
-    const savedText = localStorage.getItem("savedText");
+    const savedText = localStorage.getItem(username);
 
     const data = {
-      title: "some title",
+      title: title,
       description: "some desc with new text",
       text: savedText,
-      user: "Ashutosh",
+      user: username,
     };
+    console.log("Data:", data);
 
     axios
       .post("https://voivevibeai.co/store_data", data)
@@ -252,8 +268,8 @@ export default function BasicDemo() {
     setTimeout(() => {
       axios
         .post("https://voivevibeai.co/predict_sentiment", {
-          user: "Ashutosh",
-          title: "some title",
+          user: username,
+          title: title,
         })
         .then((response) => {
           const emotion = response.data.emotion;
@@ -328,10 +344,10 @@ export default function BasicDemo() {
 
         // Update text state and local storage with final lines
         setText((prevText) => [...prevText, ...newLines]);
-        localStorage.setItem("savedText", text.join("\n"));
+        localStorage.setItem(username, text.join("\n"));
       };
     }
-  }, [text]); // Update effect on text changes (for potential edge cases)
+  }, [text, username]); // Update effect on text changes (for potential edge cases)
 
   const startRecognition = () => {
     if (recognizing) {
@@ -347,7 +363,7 @@ export default function BasicDemo() {
     <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 p-4">
       <section className="flex flex-col gap-4 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md w-full max-w-3xl">
         <h2 className="text-2xl font-bold text-center dark:text-white">
-          Title Here
+          {title}
         </h2>
 
         <div className="flex justify-between">
@@ -360,7 +376,7 @@ export default function BasicDemo() {
           <div className="text-center mt-4 text-gray-600 dark:text-gray-300">
             {infoMessage}
           </div>
-          <ChatModal title={"👩‍🦰Ask AI!"} />
+          <ChatModal title={title} user={username} />
         </div>
 
         <div className="mb-2">
@@ -382,7 +398,7 @@ export default function BasicDemo() {
             value={text.join("\n")} // Join text array into string with newlines
             onChange={(value) => {
               setText(value.split("\n"));
-              localStorage.setItem("savedText", value);
+              localStorage.setItem(username, value);
               exportText();
             }}
             style={{ height: "250px" }}
@@ -393,5 +409,5 @@ export default function BasicDemo() {
         <div>{emotion && <Emotion emotions={[emotion]} />}</div>
       </section>
     </div>
-  );
+  );  
 }

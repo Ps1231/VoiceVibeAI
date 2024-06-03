@@ -391,7 +391,7 @@ const characters = [
   { name: "Sukuna", image: sukuna },
 ];
 
-export default function Chat({ title }: { title: string }) {
+export default function Chat({ user, title }: { user: string; title: string }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [message, setMessage] = useState("");
   const [character, setCharacter] = useState("Jessica");
@@ -424,8 +424,8 @@ export default function Chat({ title }: { title: string }) {
     socket.emit("pingEvent", {
       data: message,
       character,
-      user: "Ashutosh",
-      title: "some title",
+      user: user,
+      title: title,
     });
     setChat((prevChat: any) => [...prevChat, { sender: "client", message }]);
     setMessage("");
